@@ -2,6 +2,8 @@
 title: Memory
 date: 2017-11-06 15:55:42
 tags:
+    - daily life
+categories: 随笔
 ---
 
 ### 2017_10_23

@@ -4,7 +4,7 @@
 
 # Site
 title: Coolixz
-subtitle: enningxie
+subtitle: Focus
 description: coder
 author: enningxie
 language: zh-Hans
@@ -80,4 +80,12 @@ deploy:
   type: git
   repo: git@github.com:enningxie/enningxie.github.io.git
   branch: master
+
+# Search
+algolia:
+  applicationID: 3ILT6D277E
+  apiKey: b4c6376d50c3288145cd43d1afc598b2
+  adminApiKey: 28a11534b8d0d4ce3e7ea05314a4ec65
+  indexName: enning
+  chunkSize: 5000
 

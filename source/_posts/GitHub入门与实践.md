@@ -2,6 +2,8 @@
 title: GitHub入门与实践
 date: 2017-11-06 15:57:56
 tags:
+    - GitHub
+categories: 技术
 ---
 
 ### GitHub入门与实践
