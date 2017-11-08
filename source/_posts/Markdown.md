@@ -115,9 +115,9 @@ Alt-H2
 在Markdown中有两种方式实现链接。
 
 ```
-[内嵌式链接](www.github.com/enningxie)
+[内嵌式链接](www.enningxie.com)
 
-[带标题（title）的内嵌式链接](www.github.com/enningxie "Coolixz")
+[带标题（title）的内嵌式链接](www.enningxie.com "Coolixz")
 
 [参考式链接][Arbitrary case-insensitive reference text]
 
@@ -129,15 +129,15 @@ Alt-H2
 
 上述参考链接的链接地址：
 
-[Arbitrary case-insensitive reference text]: www.github.com/enningxie
-[1]: www.github.com/enningxie
-[link text itself]: www.github.com/enningxie
+[Arbitrary case-insensitive reference text]: www.enningxie.com
+[1]: www.enningxie.com
+[link text itself]: www.enningxie.com
 
 ```
 
-[内嵌式链接](www.github.com/enningxie)
+[内嵌式链接](www.enningxie.com)
 
-[带标题（title）的内嵌式链接](www.github.com/enningxie "Coolixz")
+[带标题（title）的内嵌式链接](www.enningxie.com "Coolixz")
 
 [参考式链接][Arbitrary case-insensitive reference text]
 
@@ -149,9 +149,9 @@ Alt-H2
 
 上述参考链接的链接地址：
 
-[Arbitrary case-insensitive reference text]: www.github.com/enningxie
-[1]: www.github.com/enningxie
-[link text itself]: www.github.com/enningxie
+[Arbitrary case-insensitive reference text]: www.enningxie.com
+[1]: www.enningxie.com
+[link text itself]: www.enningxie.com
 
 ---
 
@@ -323,4 +323,4 @@ ___
 
 下划线
 
-Markdown最基本的用法就是这些。玩的开心。:tada:
+Markdown最基本的用法就是这些。玩的开心。
