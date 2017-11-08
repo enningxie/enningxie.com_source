@@ -8,6 +8,10 @@ categories: 技术
 
 ### GitHub入门与实践
 
+欢迎加入[GitHub](https://github.com),组织需要你 :)
+
+<!--more-->
+
 #### 第一章　欢迎来到GitHub的世界
 
 ##### 1.1 什么是GitHub
@@ -18,7 +22,6 @@ GitHub是为开发者提供Git仓库的托管服务。这是一个让开发者�
 > 首先，GitHub与Git是完全不同的两个东西。  
 > 在Git中，开发者将源代码存入名为“Git仓库”的资料库中并加以使用。而GitHub则是在网络上提供Git仓库的一项服务。也就是说GitHub上公开的软件源代码全部由Git进行管理。
 
-<!--more-->
 
 ##### 1.2 使用GitHub会带来哪些变化
 

@@ -4,7 +4,12 @@ date: 2017-11-06 15:55:42
 tags:
     - daily life
 categories: 随笔
+password: 110
 ---
+
+记录一些日常所需的，不是什么重要的东西，但也不是不重要的东西。Locked.
+
+<!--more-->
 
 ### 2017_10_23
 
@@ -19,8 +24,6 @@ categories: 随笔
 `tar jxvf test.tar.bz2` # 解压`bz2` 文件  
 `tar zcvf test.tar.gz test.txt` # 打包并调用`gzip`压缩为`gz`格式的文件  
 `tar zxvf test.tar.gz` # 解压`gz`文件
-
-<!--more-->
 
 ---
 
