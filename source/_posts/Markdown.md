@@ -323,4 +323,20 @@ ___
 
 下划线
 
-Markdown最基本的用法就是这些。玩的开心。
+Markdown最基本的用法就是这些。
+
+---
+
+#### 11. Markdown编辑器
+
+目前我在用的Markdown的编辑器是GitHub出品的[Atom](https://atom.io).
+
+![Atom_01](http://oslivcbny.bkt.clouddn.com/Atom01.png)
+
+Atom可以实现一边编辑`.md`文件一边预览的效果。
+
+`ctrl+shift+m`快捷键用于呼出当前`.md`文件的预览界面。
+
+![Atom_02](http://oslivcbny.bkt.clouddn.com/Atom_02.png)
+
+最后，玩的开心:)
