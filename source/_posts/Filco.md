@@ -9,6 +9,8 @@ date: 2017-11-12 14:58:38
 
 #### Filco 小开箱
 
+<!--more-->
+
 入手了一把Filco，型号：忍者二代87
 
 ![filco_01](http://oslivcbny.bkt.clouddn.com/Filco_01.jpg)
