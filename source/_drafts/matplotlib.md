@@ -390,3 +390,179 @@ plt.show()
 ![](http://oslivcbny.bkt.clouddn.com/Figure_16.png)
 
 #### 画图种类
+
+##### Scatter 散点图
+
+本节我们将讲述各种不同的plot的方式。之前我们讲到了如何plot线，现在讲述我们如何plot散点图。该节用到的例子最终呈现的结果如下图：
+
+![](http://oslivcbny.bkt.clouddn.com/Figure_17.png)
+
+**散点图**
+
+首先，引入`matplotlib.pyplot`简写为`plt`，再引入`numpy`用来产生一些随机数据。生成1024个呈标准正态分布的二维数据组（均值为0，方差为1）作为一个数据集合，并图像化这个数据集合。没一个点的颜色值用`T`来表示：
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+n = 1024  # data size
+X = np.random.normal(0, 1, n)  # 每一个点的X的值
+Y = np.random.normal(0, 1, n)  # 每一个点的Y的值
+T = np.arctan2(Y, X)  # for color value
+```
+
+数据集生成完毕，现在用`scatter`去plot这个点集，该函数输入参数一般：输入`X`和`Y`作为location,`size=75`,颜色为`T`, `color map`用默认值，透明度`alpha`为50%。X轴显示范围定位(-1.5, 1.5)，并用`xtick()`函数来隐藏x坐标轴，y轴同理：
+
+```python
+plt.figure()
+
+plt.scatter(X, Y, s=75, c=T, alpha=.5)
+
+plt.xlim(-1.5, 1.5)
+plt.xticks(())  # ignore xticks
+plt.ylim(-1.5, 1.5)
+plt.yticks(())  # ignore yticks
+
+plt.show()
+```
+
+##### Bar 柱状图
+
+本节介绍用`matplotlib`来制作一个柱状图，今天的结果如下图：
+
+![](http://oslivcbny.bkt.clouddn.com/Figure_18.png)
+
+今天的柱状图分成上下两部分，每一个柱体上都有相应的数值标注，并且取消坐标轴的显示。
+
+**生成基本图形**
+
+向上向下分别生成12个数据，X为0到11的整数，Y是相应的均匀分布的随机数据。使用的函数是`plt.bar`，参数为X，Y：
+
+```python
+# coding=utf-8
+import matplotlib.pyplot as plt
+import numpy as np
+
+n = 12
+X = np.arange(n)
+Y1 = (1-X/float(n))*np.random.uniform(0.5, 1.0, n)
+Y2 = (1-X/float(n))*np.random.uniform(0.5, 1.0, n)
+
+plt.figure()
+plt.bar(X, +Y1)
+plt.bar(X, -Y2)
+
+plt.xlim(-5, n)
+plt.xticks(())
+plt.ylim(-1.25, 1.25)
+plt.yticks(())
+
+plt.show()
+```
+
+这样我们就生成了下图所示的柱状图基本框架：
+
+![](http://oslivcbny.bkt.clouddn.com/Figure_19.png)
+
+**加颜色和数据**
+
+下面我们就颜色和数值进行优化。用`facecolor`设置主体颜色，`edgecolor`设置边框颜色为白色
+
+```python
+plt.bar(X, +Y1, facecolor='#9999ff', edgecolor='white')
+plt.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
+```
+
+现在呈现的结果为：
+
+![](http://oslivcbny.bkt.clouddn.com/Figure_20.png)
+
+接下来我们用函数`plt.text`分别在柱体上方（下方）加上数值，用`%.2f`保留两位小数，横向居中对齐`ha='center'`，纵向底部（顶部）对齐`va='bottom'`：
+
+```python
+for x, y in zip(X, Y1):
+    # ha: horizontal alignment
+    # va: vertical alignment
+    plt.text(x + 0.4, y + 0.05, '%.2f' % y, ha='center', va='bottom')
+
+for x, y in zip(X, Y2):
+    # ha: horizontal alignment
+    # va: vertical alignment
+    plt.text(x + 0.4, -y - 0.05, '%.2f' % y, ha='center', va='top')
+```
+
+最终结果就像开始一样：
+
+![](http://oslivcbny.bkt.clouddn.com/Figure_18.png)
+
+##### Contours等高线图
+
+本节讲解生成等高线图，最终结果如下所示：
+
+![](http://oslivcbny.bkt.clouddn.com/Figure_21.png)
+
+**画等高线**
+
+数据集即三维点(x, y)和对应的高度值，共有256个点。高度值使用一个height function`f(x,y)`生成。x, y分别是在区间[-3, 3]中均匀分布的256个值，并`meshgrid`在二维平面中将每一个x和每一个y分别对应起来，编织成栅格：
+
+```python
+# coding=utf-8
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+def f(x, y):
+    # the height function
+    return (1 - x/2 + x**5 + y**3) * np.exp(-x**2-y**2)
+
+n = 256
+x = np.linspace(-3, 3, n)
+y = np.linspace(-3, 3, n)
+X, Y = np.meshgrid(x, y)
+```
+
+接下来进行颜色填充。使用函数`plt.contourf`把颜色加进去，位置参数分别为：X, Y, f(X,Y)。透明度0.75，并将 f(X,Y) 的值对应到color map的暖色组中寻找对应颜色。
+
+```python
+# use plt.contourf to filling contours
+# X, Y and value for (X,Y) point
+plt.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap=plt.cm.hot)
+```
+
+接下来进行等高线绘制。使用`plt.contour`函数划线。位置参数为：X, Y, f(X,Y)。颜色选黑色，线条宽度选0.5。现在的结果如下图所示，只有颜色和线条，还没有数值Label：
+
+```python
+# use plt.contour to add contour lines
+C = plt.contour(X, Y, f(X, Y), 8, colors='black', linewidth=.5)
+```
+
+![](http://oslivcbny.bkt.clouddn.com/Figure_22.png)
+
+**添加高度数字**
+
+其中，8代表等高线的密集程度，这里被分为10个部分。如果是0，则图像被一分为二。
+
+最后加入Label，inline控制是否将Label画在线里面，字体大小为10。并将坐标轴隐藏：
+
+```Python
+plt.clabel(C, inline=True, fontsize=10)
+plt.xticks(())
+plt.yticks(())
+```
+
+![](http://oslivcbny.bkt.clouddn.com/Figure_21.png)
+
+##### Image 图片
+
+**随机矩阵画图**
+
+这一节讲解怎样在matplotlib中打印出图像，这里我们打印出的是纯粹的数字，而非自然图像。我们在这里用这样3*3的2D-array来表示点的颜色，每一个点就是一个pixel。
+
+```Python
+import matplotlib.pyplot as plt
+import numpy as np
+
+a = np.array([0.313660827978, 0.365348418405, 0.423733120134,
+              0.365348418405, 0.439599930621, 0.525083754405,
+              0.423733120134, 0.525083754405, 0.651536351379]).reshape(3,3)
+```
