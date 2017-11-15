@@ -3,7 +3,9 @@ title: keras
 tags: keras
 categories: DeepLearning
 comments: true
+date: 2017-11-15 16:33:05
 ---
+
 
 ### Keras:基于Python的深度学习库
 
@@ -864,3 +866,6 @@ keras.layers.core.Dense(units, activation=None, use_bias=True, kernel_initialize
 ```
 
 Dense就是常用的全连接层，所实现的运算是`output = activation(dot(input, kernel) + bias)`。其中`activation`是逐元素计算的激活函数，`kernel`是本层的权值矩阵，`bias`为偏置向量，只有当`use_bias=True`才会添加。
+
+
+其他详细API请参考[keras官方文档](https://keras.io/)

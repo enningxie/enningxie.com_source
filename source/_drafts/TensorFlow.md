@@ -156,4 +156,96 @@ with tf.Session() as sess:
 
 以上两种使用`Session`的区别在于，第一种方法需要，手动关闭`sess.close()`，这种方式适合交互式编程环境，比如使用ipython的时候；第二种方法，则不需要手动关闭`Session`，这种方式适合写在某个文件中（系统编程）。
 
-##### Variable 变量 
+##### Variable 变量
+
+**简单运用**
+
+ 在TensorFlow中，定义了某字符串是变量，它才是变量，定义的语法：`state = tf.Variable()`
+
+ ```Python
+import tensorflow as tf
+
+state = tf.Variable(0, name="counter")
+
+# 定义常量one
+one = tf.constant(1)
+
+# 定义加法步骤
+add_op = tf.add(state, one)
+
+# 将state 更新成add_op
+update = tf.assign(state, add_op)
+ ```
+
+ 如果你在TensorFlow中设定了变量，那么初始化变量是相当重要的，所以定义了变量后，一定要记得定义变量初始化操作哦，`init_op = tf.global_variables_initializer()`。
+
+ 光定义变量初始化操作还不行，还需要在`tf.Session()`中`sess.run(init_op)`，才算变量初始化成功。
+
+ ```Python
+init_op = tf.global_variables_initializer()
+
+with tf.Session() as sess:
+    sess.run(init_op)
+    for _ in range(3):
+        sess.run(update)
+        print(sess.run(state))
+ ```
+
+注意：直接调用`sess.run(state)`不起作用，需要先执行update操作才可以。
+
+##### Placeholder 传入值
+
+关于TensorFlow中的`placeholder`，类似占位符的一个概念，可以用来暂时储存变量。
+
+在TensorFlow中，如果想要从外部传入data，那就需要用到`tf.placeholder()`，然后以`sess.run(****, feed_dict={input: ****})`的形式向运算中传入数据data。
+
+```Python
+import tensorflow as tf
+# 在tensorflow 中需要定义placeholder的type，一般为tf.float32
+input1 = tf.placeholder(tf.float32)
+input2 = tf.placeholder(tf.float32)
+
+# 乘法操作
+mul_op = tf.multiply(input1, input2)
+```
+
+在定义好操作的结构之后，我们就可以在`tf.Session()`中去`run()`了。将需要传入进行运算的值放在`feed_dict={}`中（传入的值以字典的形式传入，一一对应）。
+
+```Python
+with tf.Session() as sess:
+    result = sess.run(mul_op, feed_dict={input1: 3, input2: 4})
+    print(result)
+```
+
+##### 代码实例
+
+**定义add_layer()**
+
+```Python
+import tensorflow as tf
+
+
+def add_layer(input, input_size, output_size, activation_func=None):
+```
+
+定义了`add_layer()`函数，用于向神经网络中添加层；参数分别是输入值、输入值的大小、输出值的大小、激活函数，默认是`None`。
+
+接下来，我们要定义`Weights`和`biases`，并初始化它们。
+
+```Python
+Weights = tf.Variable(tf.random_normal([input_size, output_size]))
+biases = tf.Variable(tf.zeros([1, output_size]) + 0.1)
+```
+
+从上面代码，我们可以看出，权重`Weights`的初始化是随机正态分布初始化的，注意一下初始化时传入的shape`[input_size, output_size]`。`biases`本来是用全零初始化的，但是在深度学习领域，最好不要用全零初始化，所以最后加上`0.1`。
+
+```Python
+Wx_plus_b = tf.matmul(input, Weights) + biases
+if activation_func is None:
+    output = Wx_plus_b
+else:
+    output = activation_func(Wx_plus_b)
+return output
+```
+
+`Wx_plus_b`是简单的矩阵运算。在`activation_func`为`None`的情况下，我们的`output`就是`Wx_plus_b`，否则，将`Wx_plus_b`值传入`activation_func`中，返回最后的结果。
