@@ -225,3 +225,33 @@ saS|SAs
 - `wget -r -np -nd url` 下载全部文件
 
 - `proxychains wget ` 使用代理，需要安装
+
+---
+
+### 2017_11_17
+
+- np.r_,np.c_
+
+用法：concatenation function
+
+np.r_按row来组合array,
+
+np.c_按colunm来组合array
+
+```Python
+>>> a = np.array([1,2,3])
+>>> b = np.array([5,2,5])
+>>> //测试 np.r_
+>>> np.r_[a,b]
+array([1, 2, 3, 5, 2, 5])
+>>>
+>>> //测试 np.c_
+>>> np.c_[a,b]
+array([[1, 5],
+       [2, 2],
+       [3, 5]])
+>>> np.c_[a,[0,0,0],b]
+array([[1, 0, 5],
+       [2, 0, 2],
+       [3, 0, 5]])
+```
