@@ -24,3 +24,42 @@ Linux虽然是开源的系统，但并不会不安全。相反的，Linux由于�
 ```
 $ sudo apt-get update && sudo apt-get upgrade
 ```
+
+### Working with vim
+
+- type `yy` to copy a line
+
+- type `p` to paste the line
+
+- type `dd` to cut the line
+
+- type `:w` to save any changes
+
+- type `:q` to exit Vim
+
+- `:wq` write and exit at the same time
+
+- `:q!` exit without saving
+
+### Basic regular expressions
+
+- `grep "joe" file.txt` 从file.txt中查找`joe`
+
+- `grep -i "joe" file.txt` 从file.txt中大小写不敏感的找出`joe`
+
+- `.` matches any character
+
+- `*` matches previous character multiple times
+
+- `grep "^\s$" file.txt`　find empty lines.  
+- `\s` this stands for space,
+- `^` beginning of the line,
+- `$` ending
+
+- `sed "s/Joe/All/g" file.txt` find `Joe` word and replace with `All` word
+
+### Pipes and subshells
+
+- `pwd | wc -c` counting the length of the current path using the following command.
+
+- `|` is the pipe symbol, and what it does is send the output of the command on the left to the command on the right. you can create a chain of any number of pipes.
