@@ -1,6 +1,8 @@
 ---
 title: Python 爬虫
 tags:
-categories:
-comments:
+ - python3
+ - scrap
+categories: 技术
+comments: true
 ---
