@@ -3,7 +3,9 @@ title: 关于Ubuntu的一些
 tags: Ubuntu
 categories: Ubuntu
 comments: true
+date: 2017-11-22 16:19:14
 ---
+
 
 ### 关于Ubuntu的一些有用的东西
 
