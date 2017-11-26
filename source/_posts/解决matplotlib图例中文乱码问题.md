@@ -6,11 +6,11 @@ comments: true
 date: 2017-11-24 23:27:37
 ---
 
-<!--more-->
-
 ### matplotlib图例中文乱码解决方案
 
 **状况**：用`matplotlib`画图过程中，会用中文做图例(xlabel,title...)，会遇到中文乱码的问题（方格）。
+
+<!--more-->
 
 首先，下载中文字体`simhei.ttf`。
 
