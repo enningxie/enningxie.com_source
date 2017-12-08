@@ -1,6 +1,18 @@
 ---
 title: E_language
-tags:
-categories:
-comments:
+tags: cet
+categories: 技术
+comments: true
 ---
+
+### aiyo
+
+<!--more-->
+
+**听力**
+
+|用户名|密码|vnc地址|vnc密码|
+|---|---|---|---|
+|xyc|123456|10.131.102.87:3|123456|
+|ymc|123456|10.131.102.87:4|123456|
+|zyx|123456|10.131.102.87:5|123456|
