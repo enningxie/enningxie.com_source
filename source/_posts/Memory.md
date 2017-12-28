@@ -283,3 +283,11 @@ array([[1, 0, 5],
 - `ssh myserver -N -L localhost:8888:localhost:8888`
 
 在客户端链接服务器端服务。
+
+---
+
+### 2017_12_26
+
+- `conda install libgcc`
+
+face_recognition: python3.5、opencv、dlib、face_recognition

@@ -71,3 +71,15 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/home/enningxie/Do
 make -j8
 make install
 ```
+
+对于错误：
+
+```
+ fatal error: LAPACKE_H_PATH-NOTFOUND/lapacke.h: No such file or directory #include "LAPACKE_H_PATH-NOTFOUND/lapacke.h"
+```
+
+解决：
+
+```
+sudo apt-get install liblapacke-dev checkinstall
+```
