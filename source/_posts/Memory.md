@@ -291,3 +291,17 @@ array([[1, 0, 5],
 - `conda install libgcc`
 
 face_recognition: python3.5、opencv、dlib、face_recognition
+
+---
+
+### 2017_12_29
+
+Training a neural network means taking a training example and adjusting all of the neuron weights slightly so that it predicts that training sample more accurately. In other words, each training sample will tweak all of the weights in the neural network.
+
+Negative sampling addresses this by having each training sample only modify a small percentage of the weights, rather than all of them. Here’s how it works.
+
+Essentially, the probability for selecting a word as a negative sample is related to its frequency, with more frequent words being more likely to be selected as negative samples.
+
+---
+
+### 2018_01_01
