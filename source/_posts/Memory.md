@@ -304,4 +304,20 @@ Essentially, the probability for selecting a word as a negative sample is relate
 
 ---
 
-### 2018_01_01
+### 2018_01_06
+
+**TensorFlow**
+
+Go through the code of other researchers on github. You learn a lot from this on how to implement complex models and how to implement them in an efficient way. Really try to understand their models, don’t just read through them.
+
+Go through the source code of the different types of neural networks tensorflow already has!
+
+Implement some of the papers yourself without looking at the researchers code. This is tricky since sometimes researchers sacrifice a good explanation for brevity.
+
+Let’s face it, doing things is harder than reading about doing things.
+
+People always ask me how I learn so quickly and get so much done. They usually assume I’m just really smart and that it’s a talent you have to be born with, but I firmly believe that’s not true. I’m not smarter than my average peer. I learn fast and get a lot done because I have the willpower to concentrate and work through problems. I will bang my head against a problem for hours until I figure it out while most people will give up in a matter of minutes and go out with friends instead.
+
+If you live your entire life worried about failing, you won’t get far.
+
+Read one research paper per week
