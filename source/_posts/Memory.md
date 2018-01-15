@@ -321,3 +321,20 @@ People always ask me how I learn so quickly and get so much done. They usually a
 If you live your entire life worried about failing, you won’t get far.
 
 Read one research paper per week
+
+---
+
+#### 2018_01_12
+
+Python提供了一个`tempfile`模块，用来对临时数据进行操作。
+
+`tempfile.gettempdir()`
+
+gettempdir()则用于返回保存临时文件的文件夹路径。
+
+Python为我们提供了4种基本的数据结构：list, tuple, dict, set，但是在处理数据量较大的情形的时候，这4种数据结构就明显过于单一了，比如list作为数组在某些情形插入的效率会比较低，有时候我们也需要维护一个有序的dict。所以这个时候我们就要用到Python标准库为我们提供的`collections`包了，它提供了多个有用的集合类，熟练掌握这些集合类，不仅可以让我们让写出的代码更加Pythonic，也可以提高我们程序的运行效率。
+
+
+Python中的`zipfile`和`tarfile`两个模块可以实现对文件的压缩和解压缩。并且支持向压缩包中压入新的文件，和在压缩包中指定文件进行解压缩。
+
+Python 2-3 兼容库 `six`（2*3）
