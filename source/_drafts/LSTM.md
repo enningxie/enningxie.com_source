@@ -100,3 +100,5 @@ Written down as a set of equations, LSTMs look pretty intimidating. Hopefully, w
 LSTMs were a big step in what we can accomplish with RNNs. It’s natural to wonder: is there another big step? A common opinion among researchers is: “Yes! There is a next step and it’s **attention**!” The idea is to let every step of an RNN pick information to look at from some larger collection of information.
 
 :)
+
+xz
