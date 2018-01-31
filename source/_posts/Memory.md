@@ -338,7 +338,6 @@ Python为我们提供了4种基本的数据结构：list, tuple, dict, set，但
 Python中的`zipfile`和`tarfile`两个模块可以实现对文件的压缩和解压缩。并且支持向压缩包中压入新的文件，和在压缩包中指定文件进行解压缩。
 
 Python 2-3 兼容库 `six`（2*3）
-<<<<<<< HEAD
 
 ---
 
@@ -358,3 +357,10 @@ Python 2-3 兼容库 `six`（2*3）
 
 结束了。。。
 
+---
+
+#### 2018_01_26
+
+While the Keras script examples/mnist_cnn.py is running, you can monitor GPU utilization in a different shell window:
+
+`$ watch -n 5 nvidia-smi -a --display=utilization` 监控程序使用GPU情况。

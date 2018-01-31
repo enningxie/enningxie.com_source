@@ -64,6 +64,8 @@ done :).
 
 ---
 
+update: 以下是anaconda3下的cmake语句，亲测有效
+
 ```
 cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/home/enningxie/Documents/Codes/opencv/opencv-3.2.0     -D INSTALL_C_EXAMPLES=OFF     -D INSTALL_PYTHON_EXAMPLES=OFF     -D OPENCV_EXTRA_MODULES_PATH=/home/enningxie/Documents/Codes/opencv/opencv_contrib-3.2.0/modules     -D BUILD_EXAMPLES=OFF     -D BUILD_opencv_python2=OFF     -D WITH_FFMPEG=1     -D WITH_CUDA=0     -D PYTHON3_EXECUTABLE=/home/enningxie/anaconda3/envs/tensorflow02/bin/python     -D PYTHON_INCLUDE_DIR=/home/enningxie/anaconda3/envs/tensorflow02/include/python3.5m     -D PYTHON_INCLUDE_DIR2=/home/enningxie/anaconda3/envs/tensorflow02/include/python3.5m     -D PYTHON_LIBRARY=/home/enningxie/anaconda3/envs/tensorflow02/lib/libpython3.5m.so     -D PYTHON3_PACKAGES_PATH=/home/enningxie/anaconda3/envs/tensorflow02/lib/python3.5     -D PYTHON3_NUMPY_INCLUDE_DIRS=/home/enningxie/anaconda3/envs/tensorflow02/lib/python3.5/site-packages/numpy/core/include ..
 ```
@@ -82,4 +84,26 @@ make install
 
 ```
 sudo apt-get install liblapacke-dev checkinstall
+```
+
+Uninstalling OpenCV
+
+```
+sudo apt-get purge libopencv*
+
+sudo dpkg -r opencv
+```
+
+Then, go to the build directory and
+
+```
+sudo make uninstall
+```
+
+---
+
+"update"
+
+```
+cmake -D CMAKE_BUILD_TYPE=RELEASE     -D CMAKE_INSTALL_PREFIX=/usr/local     -D INSTALL_C_EXAMPLES=OFF     -D INSTALL_PYTHON_EXAMPLES=OFF     -D OPENCV_EXTRA_MODULES_PATH=/home/enningxie/Documents/Codes/opencv/opencv_contrib-master/modules     -D BUILD_EXAMPLES=OFF     -D BUILD_opencv_python2=OFF     -D WITH_FFMPEG=1     -D WITH_CUDA=0     -D PYTHON3_EXECUTABLE=/home/enningxie/anaconda3/envs/tensorflow02/bin/python     -D PYTHON_INCLUDE_DIR=/home/enningxie/anaconda3/envs/tensorflow02/include/python3.5m  -D WITH_GTK=ON   -D PYTHON_INCLUDE_DIR2=/home/enningxie/anaconda3/envs/tensorflow02/include/python3.5m     -D PYTHON_LIBRARY=/home/enningxie/anaconda3/envs/tensorflow02/lib/libpython3.5m.so     -D PYTHON3_PACKAGES_PATH=/home/enningxie/anaconda3/envs/tensorflow02/lib/python3.5     -D PYTHON3_NUMPY_INCLUDE_DIRS=/home/enningxie/anaconda3/envs/tensorflow02/lib/python3.5/site-packages/numpy/core/include ..
 ```
