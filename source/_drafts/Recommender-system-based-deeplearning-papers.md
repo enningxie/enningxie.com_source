@@ -14,3 +14,20 @@ comments: true
 [1] 综述性文章，给出了基于深度学习推荐系统近年来的发展情况。
 
 对深度学习整合进推荐系统的通常看法是显著优于传统模型。
+
+deep learning based recommender system.
+
+cnn: Deep neural networks for youtube recommendations. Image-based recommendations on styles and
+substitutes. VBPR: Visual Bayesian Personalized Ranking from Implicit Feedback.
+
+ae: Collaborative deep learning for recommender systems. Collaborative denoising auto-encoders for top-n recommender
+systems. Autorec: Autoencoders meet collaborative ltering.
+
+mlp: Deep neural networks for youtube recommendations. Wide & deep learning for recommender systems.
+
+rnn: Session-based recommendations with recurrent neural networks.
+
+dssm: A multi-view deep learning approach for cross domain user modeling
+in recommendation systems.
+
+rbm: Improving content-based and hybrid music recommendation using deep learning.
