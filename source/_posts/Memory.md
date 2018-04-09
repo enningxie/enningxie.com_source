@@ -1,4 +1,4 @@
-
+---
 title: Memory
 date: 2017-11-06 15:55:42
 tags:
@@ -286,81 +286,10 @@ array([[1, 0, 5],
 
 ---
 
-### 2017_12_26
+### 2018_03_22
 
-- `conda install libgcc`
-
-face_recognition: python3.5、opencv、dlib、face_recognition
+- 'channels_first' is typically faster on GPUs while 'channels_last' is typically faster on CPUs.
 
 ---
 
-### 2017_12_29
-
-Training a neural network means taking a training example and adjusting all of the neuron weights slightly so that it predicts that training sample more accurately. In other words, each training sample will tweak all of the weights in the neural network.
-
-Negative sampling addresses this by having each training sample only modify a small percentage of the weights, rather than all of them. Here’s how it works.
-
-Essentially, the probability for selecting a word as a negative sample is related to its frequency, with more frequent words being more likely to be selected as negative samples.
-
----
-
-### 2018_01_06
-
-**TensorFlow**
-
-Go through the code of other researchers on github. You learn a lot from this on how to implement complex models and how to implement them in an efficient way. Really try to understand their models, don’t just read through them.
-
-Go through the source code of the different types of neural networks tensorflow already has!
-
-Implement some of the papers yourself without looking at the researchers code. This is tricky since sometimes researchers sacrifice a good explanation for brevity.
-
-Let’s face it, doing things is harder than reading about doing things.
-
-People always ask me how I learn so quickly and get so much done. They usually assume I’m just really smart and that it’s a talent you have to be born with, but I firmly believe that’s not true. I’m not smarter than my average peer. I learn fast and get a lot done because I have the willpower to concentrate and work through problems. I will bang my head against a problem for hours until I figure it out while most people will give up in a matter of minutes and go out with friends instead.
-
-If you live your entire life worried about failing, you won’t get far.
-
-Read one research paper per week
-
----
-
-#### 2018_01_12
-
-Python提供了一个`tempfile`模块，用来对临时数据进行操作。
-
-`tempfile.gettempdir()`
-
-gettempdir()则用于返回保存临时文件的文件夹路径。
-
-Python为我们提供了4种基本的数据结构：list, tuple, dict, set，但是在处理数据量较大的情形的时候，这4种数据结构就明显过于单一了，比如list作为数组在某些情形插入的效率会比较低，有时候我们也需要维护一个有序的dict。所以这个时候我们就要用到Python标准库为我们提供的`collections`包了，它提供了多个有用的集合类，熟练掌握这些集合类，不仅可以让我们让写出的代码更加Pythonic，也可以提高我们程序的运行效率。
-
-
-Python中的`zipfile`和`tarfile`两个模块可以实现对文件的压缩和解压缩。并且支持向压缩包中压入新的文件，和在压缩包中指定文件进行解压缩。
-
-Python 2-3 兼容库 `six`（2*3）
-
----
-
-#### 2018_01_16
-
-在淘宝城这边干活，累。。。
-
----
-
-#### 2018_01_17
-
-心累。。。
-
----
-
-#### 2018_01_18
-
-结束了。。。
-
----
-
-#### 2018_01_26
-
-While the Keras script examples/mnist_cnn.py is running, you can monitor GPU utilization in a different shell window:
-
-`$ watch -n 5 nvidia-smi -a --display=utilization` 监控程序使用GPU情况。
+### 2018_03_24
