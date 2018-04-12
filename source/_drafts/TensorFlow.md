@@ -535,3 +535,459 @@ y_data = np.square(x_data) - 0.5 + noise
 
 
 ### 杂记
+
+#### 1
+
+```python
+import tensorflow as tf
+
+a = tf.add(3, 5)
+
+with tf.Session() as sess:
+  	print(sess.run(a))
+```
+
+```python
+x = 2
+y = 3
+op1 = tf.add(x, y)
+op2 = tf.multiply(x, y)
+op3 = tf.pow(op2, op1)
+with tf.Session() as sess:
+	op3 = sess.run(op3)
+```
+
+```python
+x = 2
+y = 3
+add_op = tf.add(x, y)
+mul_op = tf.multiply(x, y)
+useless = tf.multiply(x, add_op)
+pow_op = tf.pow(add_op, mul_op)
+with tf.Session() as sess:
+	z = sess.run(pow_op)
+```
+
+```python
+x = 2
+y = 3
+add_op = tf.add(x, y)
+mul_op = tf.multiply(x, y)
+useless = tf.multiply(x, add_op)
+pow_op = tf.pow(add_op, mul_op)
+with tf.Session() as sess:
+	z, not_useless = sess.run([pow_op, useless])
+```
+
+```python
+# To put part of a graph on a specific CPU or GPU:
+# Creates a graph.
+with tf.device('/gpu:2'):
+  a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], name='a')
+  b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], name='b')
+  c = tf.multiply(a, b)
+
+# Creates a session with log_device_placement set to True.
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+
+# Runs the op.
+print(sess.run(c))
+```
+
+```python
+# to add operators to a graph, set it as default:
+g = tf.Graph()
+with g.as_default():
+	x = tf.add(3, 5)
+sess = tf.Session(graph=g)
+with tf.Session() as sess:
+	sess.run(x)
+```
+
+```python
+# To handle the default graph:
+g = tf.get_default_graph()
+```
+
+```python
+# Do not mix default graph and user created graphs
+g = tf.Graph()
+# add ops to the default graph
+a = tf.constant(3)
+# add ops to the user created graph
+with g.as_default():
+	b = tf.constant(5)
+```
+
+```python
+# Do not mix default graph and user created graphs
+g1 = tf.get_default_graph()
+g2 = tf.Graph()
+# add ops to the default graph
+with g1.as_default():
+	a = tf.Constant(3)
+# add ops to the user created graph
+with g2.as_default():
+	b = tf.Constant(5)
+```
+
+```python
+import tensorflow as tf
+a = tf.constant(2)
+b = tf.constant(3)
+x = tf.add(a, b)
+with tf.Session() as sess:
+	print(sess.run(x))
+```
+
+```python
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+import tensorflow as tf
+
+a = tf.constant(2)
+b = tf.constant(3)
+x = tf.add(a, b)
+with tf.Session() as sess:
+	print(sess.run(x))
+```
+
+```python
+import tensorflow as tf
+a = tf.constant(2)
+b = tf.constant(3)
+x = tf.add(a, b)
+writer = tf.summary.FileWriter('./graphs', tf.get_default_graph())
+with tf.Session() as sess:
+	# writer = tf.summary.FileWriter('./graphs', sess.graph)
+	print(sess.run(x))
+writer.close() # close the writer when you’re done using it
+```
+
+```python
+# Go to terminal, run:
+$ python3 [yourprogram].py
+$ tensorboard --logdir="./graphs" --port 6006
+# Then open your browser and go to: http://localhost:6006/
+```
+
+```python
+# constant
+
+tf.constant(
+    value,
+    dtype=None,
+    shape=None,
+    name='Const',
+    verify_shape=False
+)
+
+import tensorflow as tf
+a = tf.constant([2, 2], name='a')
+b = tf.constant([[0, 1], [2, 3]], name='b')
+```
+
+```python
+import tensorflow as tf
+a = tf.constant([2, 2], name='a')
+b = tf.constant([[0, 1], [2, 3]], name='b')
+x = tf.multiply(a, b, name='mul')
+with tf.Session() as sess:
+	print(sess.run(x))
+```
+
+```python
+tf.zeros(shape, dtype=tf.float32, name=None)
+# creates a tensor of shape and all elements will be zeros
+
+tf.zeros([2, 3], tf.int32) ==> [[0, 0, 0], [0, 0, 0]]
+```
+
+```python
+tf.zeros_like(input_tensor, dtype=None, name=None, optimize=True)
+# creates a tensor of shape and type (unless type is specified) as the input_tensor but all elements are zeros.
+
+# input_tensor is [[0, 1], [2, 3], [4, 5]]
+tf.zeros_like(input_tensor) ==> [[0, 0], [0, 0], [0, 0]]
+```
+
+```python
+tf.ones(shape, dtype=tf.float32, name=None)
+tf.ones_like(input_tensor, dtype=None, name=None, optimize=True)
+```
+
+```python
+tf.fill(dims, value, name=None)
+creates a tensor filled with a scalar value.
+
+tf.fill([2, 3], 8) ==> [[8, 8, 8], [8, 8, 8]]
+```
+
+```python
+# create a sequence of num evenly-spaced values are generated beginning at start. If num > 1, the values in the sequence increase by stop - start / num - 1, so that the last one is exactly stop.
+tf.lin_space(start, stop, num, name=None)
+tf.lin_space(10.0, 13.0, 4) ==> [10. 11. 12. 13.]
+
+# create a sequence of numbers that begins at start and extends by increments of delta up to but not including limit
+tf.range(start, limit=None, delta=1, dtype=None, name='range')
+tf.range(3, 18, 3) ==> [3 6 9 12 15]
+tf.range(5) ==> [0 1 2 3 4]
+```
+
+```python
+# random
+tf.random_normal
+tf.truncated_normal
+tf.random_uniform
+tf.random_shuffle
+tf.random_crop
+tf.multinomial
+tf.random_gamma
+
+tf.set_random_seed(seed)
+```
+
+```python
+# div
+a = tf.constant([2, 2], name='a')
+b = tf.constant([[0, 1], [2, 3]], name='b')
+with tf.Session() as sess:
+	print(sess.run(tf.div(b, a)))             ⇒ [[0 0] [1 1]]
+	print(sess.run(tf.divide(b, a)))          ⇒ [[0. 0.5] [1. 1.5]]
+	print(sess.run(tf.truediv(b, a)))         ⇒ [[0. 0.5] [1. 1.5]]
+	print(sess.run(tf.floordiv(b, a)))        ⇒ [[0 0] [1 1]]
+	print(sess.run(tf.realdiv(b, a)))         ⇒ # Error: only works for real values
+	print(sess.run(tf.truncatediv(b, a)))     ⇒ [[0 0] [1 1]]
+	print(sess.run(tf.floor_div(b, a)))       ⇒ [[0 0] [1 1]]
+```
+
+```python
+# Print out the graph def
+my_const = tf.constant([1.0, 2.0], name="my_const")
+with tf.Session() as sess:
+	print(sess.graph.as_graph_def())
+```
+
+```python
+# Variables
+# create variables with tf.Variable
+s = tf.Variable(2, name="scalar")
+m = tf.Variable([[0, 1], [2, 3]], name="matrix")
+W = tf.Variable(tf.zeros([784,10]))
+```
+
+```python
+# tf.constant is an op
+# tf.Variable is a class with many ops
+# create variables with tf.get_variable
+s = tf.get_variable("scalar", initializer=tf.constant(2))
+m = tf.get_variable("matrix", initializer=tf.constant([[0, 1], [2, 3]]))
+W = tf.get_variable("big_matrix", shape=(784, 10), initializer=tf.zeros_initializer())
+```
+
+```python
+# tf.Variable holds several ops:
+
+x = tf.Variable(...)
+
+x.initializer # init op
+x.value() # read op
+x.assign(...) # write op
+x.assign_add(...) # and more
+```
+
+```python
+# create variables with tf.get_variable
+s = tf.get_variable("scalar", initializer=tf.constant(2))
+m = tf.get_variable("matrix", initializer=tf.constant([[0, 1], [2, 3]]))
+W = tf.get_variable("big_matrix", shape=(784, 10), initializer=tf.zeros_initializer())
+
+with tf.Session() as sess:
+	print(sess.run(W))   >> FailedPreconditionError: Attempting to use uninitialized value Variable
+```
+
+```python
+# The easiest way is initializing all variables at once:
+with tf.Session() as sess:
+	sess.run(tf.global_variables_initializer())
+
+# Initialize only a subset of variables:
+with tf.Session() as sess:
+  sess.run(tf.variables_initializer([a, b]))
+
+# Initialize a single variable
+W = tf.Variable(tf.zeros([784,10]))
+with tf.Session() as sess:
+  sess.run(W.initializer)
+
+```
+
+```python
+# W is a random 700 x 100 variable object
+W = tf.Variable(tf.truncated_normal([700, 10]))
+with tf.Session() as sess:
+	sess.run(W.initializer)
+	print(W)
+
+>> Tensor("Variable/read:0", shape=(700, 10), dtype=float32)
+```
+
+```python
+# W is a random 700 x 100 variable object
+W = tf.Variable(tf.truncated_normal([700, 10]))
+with tf.Session() as sess:
+	sess.run(W.initializer)
+	print(W.eval())				# Similar to print(sess.run(W))
+
+>> [[-0.76781619 -0.67020458  1.15333688 ..., -0.98434633 -1.25692499
+  -0.90904623]
+ [-0.36763489 -0.65037876 -1.52936983 ...,  0.19320194 -0.38379928
+   0.44387451]
+ [ 0.12510735 -0.82649058  0.4321366  ..., -0.3816964   0.70466036
+   1.33211911]
+ ...,
+ [ 0.9203397  -0.99590844  0.76853162 ..., -0.74290705  0.37568584
+   0.64072722]
+ [-0.12753558  0.52571583  1.03265858 ...,  0.59978199 -0.91293705
+  -0.02646019]
+ [ 0.19076447 -0.62968266 -1.97970271 ..., -1.48389161  0.68170643
+   1.46369624]]
+```
+
+```python
+# Control Dependencies
+tf.Graph.control_dependencies(control_inputs)
+# defines which ops should be run first
+# your graph g have 5 ops: a, b, c, d, e
+g = tf.get_default_graph()
+with g.control_dependencies([a, b, c]):
+	# 'd' and 'e' will only run after 'a', 'b', and 'c' have executed.
+	d = ...
+	e = …
+```
+
+```python
+tf.placeholder(dtype, shape=None, name=None)
+# create a placeholder for a vector of 3 elements, type tf.float32
+a = tf.placeholder(tf.float32, shape=[3])
+
+b = tf.constant([5, 5, 5], tf.float32)
+
+# use the placeholder as you would a constant or a variable
+c = a + b  # short for tf.add(a, b)
+
+with tf.Session() as sess:
+	print(sess.run(c)) 				# >> ???
+```
+
+```python
+# shape=None means that tensor of any shape will be accepted as value for placeholder.
+# shape=None is easy to construct graphs, but nightmarish for debugging
+tf.placeholder(dtype, shape=None, name=None)
+# create a placeholder for a vector of 3 elements, type tf.float32
+a = tf.placeholder(tf.float32, shape=[3])
+
+b = tf.constant([5, 5, 5], tf.float32)
+
+# use the placeholder as you would a constant or a variable
+c = a + b  # short for tf.add(a, b)
+
+with tf.Session() as sess:
+	print(sess.run(c, feed_dict={a: [1, 2, 3]})) 	# the tensor a is the key, not the string ‘a’
+
+# >> [6, 7, 8]
+```
+
+```python
+# You can feed_dict any feedable tensor.
+# Placeholder is just a way to indicate that something must be fed
+tf.Graph.is_feedable(tensor)
+# True if and only if tensor is feedable.
+```
+
+```python
+# to avoid lazy loading
+# Separate definition of ops from computing/running ops
+# Use Python property to ensure function is also loaded once the first time it is called*
+```
+
+```python
+# placeholder
+data, n_samples = utils.read_birth_life_data(DATA_FILE)
+X = tf.placeholder(tf.float32, name='X')
+Y = tf.placeholder(tf.float32, name='Y')
+…
+with tf.Session() as sess:
+       …
+	# Step 8: train the model
+	for i in range(100): # run 100 epochs
+		for x, y in data:
+			# Session runs train_op to minimize loss
+			sess.run(optimizer, feed_dict={X: x, Y:y})
+```
+
+```python
+tf.data.Dataset.from_tensor_slices((features, labels))
+tf.data.Dataset.from_generator(gen, output_types, output_shapes)
+tf.data.Dataset.from_tensor_slices((features, labels))
+dataset = tf.data.Dataset.from_tensor_slices((data[:,0], data[:,1]))
+```
+
+```python
+tf.data.Dataset.from_tensor_slices((features, labels))
+dataset = tf.data.Dataset.from_tensor_slices((data[:,0], data[:,1]))
+print(dataset.output_types)		# >> (tf.float32, tf.float32)
+print(dataset.output_shapes)		# >> (TensorShape([]), TensorShape([]))
+```
+
+```python
+tf.data.TextLineDataset(filenames)
+tf.data.FixedLengthRecordDataset(filenames)
+tf.data.TFRecordDataset(filenames)
+```
+
+```python
+iterator = dataset.make_one_shot_iterator()
+iterator = dataset.make_initializable_iterator()
+---
+iterator = dataset.make_one_shot_iterator()
+# Iterates through the dataset exactly once. No need to initialization.
+iterator = dataset.make_initializable_iterator()
+# Iterates through the dataset as many times as we want. Need to initialize with each epoch.
+```
+
+```python
+iterator = dataset.make_one_shot_iterator()
+X, Y = iterator.get_next()         # X is the birth rate, Y is the life expectancy
+with tf.Session() as sess:
+	print(sess.run([X, Y]))		# >> [1.822, 74.82825]
+	print(sess.run([X, Y]))		# >> [3.869, 70.81949]
+	print(sess.run([X, Y]))		# >> [3.911, 72.15066]
+```
+
+```python
+iterator = dataset.make_initializable_iterator()
+...
+for i in range(100):
+        sess.run(iterator.initializer)
+        total_loss = 0
+        try:
+            while True:
+                sess.run([optimizer])
+        except tf.errors.OutOfRangeError:
+            pass
+```
+
+```python
+dataset = dataset.shuffle(1000)
+dataset = dataset.repeat(100)
+dataset = dataset.batch(128)
+dataset = dataset.map(lambda x: tf.one_hot(x, 10))
+# convert each elem of dataset to one_hot vector
+```
+
+```python
+# optimizer
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(loss)
+_, l = sess.run([optimizer, loss], feed_dict={X: x, Y:y})
+```
